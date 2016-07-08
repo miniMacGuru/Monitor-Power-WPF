@@ -59,6 +59,9 @@ namespace Monitor_Power_WPF
             DimMonitors();
         }
 
+        /**
+         * Closing the app cancels any pending shutdown
+         */
         protected override void OnClosed(EventArgs e)
         {
             base.OnClosed(e);
@@ -71,6 +74,10 @@ namespace Monitor_Power_WPF
             }
         }
 
+        /**
+         * Calulate the target shutdown time, then run a timer every 1 second to update the OSD and check to see if we've reached our target time yet
+         * 
+         */
         Timer shutdownTimer = null;
         private void btnTimedShutdown_Click(object sender, RoutedEventArgs e)
         {
@@ -94,7 +101,7 @@ namespace Monitor_Power_WPF
                     });
                     
                     
-                    if (diff.Seconds <= 0)
+                    if (diff.TotalSeconds <= 0)
                     {
                         shutdownTimer.Stop();
                         ShutdownComputer();
