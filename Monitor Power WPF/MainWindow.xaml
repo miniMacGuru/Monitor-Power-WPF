@@ -5,8 +5,40 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Monitor_Power_WPF"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        
+        Title="Monitor Power" Height="293.968" Width="382.889">
+    <Grid Margin="30px" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Button Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="100px" FontSize="16" Name="btnDimMonitors" Click="btnDimMonitors_Click">Dim Monitor</Button>
+        <Grid Grid.Row="1" Margin="10px">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Label Content="Hours" Grid.Column="0" Grid.Row="0" VerticalContentAlignment="top"/>
+            <Label Content="Minutes" Grid.Column="2" Grid.Row="0"/>
+            <Label Content="Seconds" Grid.Column="4" Grid.Row="0"/>
+
+            <TextBox Grid.Column="1" MaxLength="3" Text="01" TextAlignment="Right" FontSize="16" Name="txtHours" GotFocus="txtHours_GotFocus"/>
+            <TextBox Grid.Column="3" MaxLength="3" Text="00" TextAlignment="Right" FontSize="16" Name="txtMinutes" GotFocus="txtMinutes_GotFocus"/>
+            <TextBox Grid.Column="5" MaxLength="3" Text="00" TextAlignment="Right" FontSize="16" Name="txtSeconds" GotFocus="txtSeconds_GotFocus"/>
+
+            <Label Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" HorizontalContentAlignment="Center" Name="lblRemainingTime">Remaning Time: 00:00:00</Label>
+            
+            <Button Grid.Row="2"  Grid.ColumnSpan="6" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" Name="btnTimedShutdown" Click="btnTimedShutdown_Click">Timed Shutdown and Dim Monitors</Button>
+        </Grid>
+        <Button Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Width="100px" FontSize="16" Name="btnExit" Click="btnExit_Click">Exit</Button>
     </Grid>
 </Window>
