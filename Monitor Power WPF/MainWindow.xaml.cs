@@ -51,7 +51,7 @@ namespace Monitor_Power_WPF
 
         private void ShutdownComputer()
         {
-            Process.Start("shutdown.exe", " / s / t 0");
+            Process.Start("shutdown.exe", "/s /f /t 0");
         }
 
         private void btnDimMonitors_Click(object sender, RoutedEventArgs e)
