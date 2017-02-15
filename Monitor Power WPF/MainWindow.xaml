@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Monitor_Power_WPF"
         mc:Ignorable="d"
-        Title="Monitor Power" Height="293.968" Width="382.889">
+        Title="Monitor Power" Height="343.758" Width="382.889">
     <Grid Margin="30px" >
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -15,6 +15,7 @@
         <Button Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="100px" FontSize="16" Name="btnDimMonitors" Click="btnDimMonitors_Click">Dim Monitor</Button>
         <Grid Grid.Row="1" Margin="10px">
             <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
@@ -38,6 +39,7 @@
             <Label Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" HorizontalContentAlignment="Center" Name="lblRemainingTime">Remaning Time: 00:00:00</Label>
             
             <Button Grid.Row="2"  Grid.ColumnSpan="6" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" Name="btnTimedShutdown" Click="btnTimedShutdown_Click">Timed Shutdown and Dim Monitors</Button>
+            <Button Grid.Row="3" Grid.ColumnSpan="6" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" Name="btnTimedMonitor" Click="btnTimedMonitor_Click">Timed Monitor Dim</Button>
         </Grid>
         <Button Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Width="100px" FontSize="16" Name="btnExit" Click="btnExit_Click">Exit</Button>
     </Grid>
