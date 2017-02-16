@@ -1,0 +1,1 @@
+Monitor Power WPF is a simple application that can activate the power save mode on monitors, activate power save mode on a custom timer, or shutdown a computer after a specified time.
