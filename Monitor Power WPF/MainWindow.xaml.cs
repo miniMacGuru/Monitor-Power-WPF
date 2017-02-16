@@ -59,6 +59,11 @@ namespace Monitor_Power_WPF
             DimMonitors();
         }
 
+        private void MainWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            txtHours.Focus();
+        }
+
         /**
          * Closing the app cancels any pending shutdown
          */
@@ -82,47 +87,18 @@ namespace Monitor_Power_WPF
         private void btnTimedShutdown_Click(object sender, RoutedEventArgs e)
         {
             RunTimerDelegate( () => { DimMonitors(); }, () => { ShutdownComputer(); });
-
-            /*try
-            {
-                DateTime targetDate = DateTime.Now;
-                targetDate = targetDate.AddHours(Convert.ToInt32(txtHours.Text));
-                targetDate = targetDate.AddMinutes(Convert.ToInt32(txtMinutes.Text));
-                targetDate = targetDate.AddSeconds(Convert.ToInt32(txtSeconds.Text));
-
-                shutdownTimer = new Timer(1000);
-                shutdownTimer.AutoReset = true;
-                shutdownTimer.Elapsed += delegate (Object s, ElapsedEventArgs ea)
-                {
-                    TimeSpan diff = targetDate.Subtract(DateTime.Now);
-                    String formattedTime = String.Format("Remaining Time: {0:00}:{1:00}:{2:00}", diff.Hours, diff.Minutes, diff.Seconds);
-
-                    lblRemainingTime.Dispatcher.Invoke(delegate
-                    {
-                        lblRemainingTime.Content = formattedTime;
-                    });
-                    
-                    
-                    if (diff.TotalSeconds <= 0)
-                    {
-                        shutdownTimer.Stop();
-                        ShutdownComputer();
-                    }
-                };
-
-                shutdownTimer.Start();
-                DimMonitors();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Unable to start timer: " + ex.Message);
-            }*/
         }
 
         private void RunTimerDelegate(Action immediateAction, Action delayedAction)
         {
             try
             {
+                if (shutdownTimer != null)
+                {
+                    shutdownTimer.Stop();
+                    shutdownTimer.Dispose();
+                }
+
                 DateTime targetDate = DateTime.Now;
                 targetDate = targetDate.AddHours(Convert.ToInt32(txtHours.Text));
                 targetDate = targetDate.AddMinutes(Convert.ToInt32(txtMinutes.Text));
@@ -150,8 +126,6 @@ namespace Monitor_Power_WPF
 
                 shutdownTimer.Start();
                 Dispatcher.BeginInvoke(immediateAction);
-                //immediateAction();
-                //DimMonitors();
             }
             catch (Exception ex)
             {
@@ -165,19 +139,9 @@ namespace Monitor_Power_WPF
             this.Close();
         }
 
-        private void txtHours_GotFocus(object sender, RoutedEventArgs e)
+        private void textBox_SelectAll_OnFocus(object sender, RoutedEventArgs e)
         {
-            txtHours.SelectAll();
-        }
-
-        private void txtMinutes_GotFocus(object sender, RoutedEventArgs e)
-        {
-            txtMinutes.SelectAll();
-        }
-
-        private void txtSeconds_GotFocus(object sender, RoutedEventArgs e)
-        {
-            txtSeconds.SelectAll();
+            (sender as TextBox).SelectAll();
         }
 
         private void btnTimedMonitor_Click(object sender, RoutedEventArgs e)
